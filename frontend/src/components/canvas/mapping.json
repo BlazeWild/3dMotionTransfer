@@ -1,0 +1,21 @@
+{
+    "LEFT_ANKLE": "LeftFoot",
+    "LEFT_ELBOW": "LeftArm",
+    "LEFT_EYE": "Leteye",
+    "LEFT_FOOT_INDEX": "LeftToeEnd",
+    "LEFT_HEEL": "LeftToeBase",
+    "LEFT_HIP": "LeftUpleg",
+    "LEFT_KNEE": "LeftLeg",
+    "LEFT_SHOULDER": "LeftShoulder",
+    "LEFT_WRIST": "LeftHand",
+    "RIGHT_ANKLE": "RightFoot",
+    "RIGHT_ELBOW": "RightArm",
+    "RIGHT_EYE": "Righteye",
+    "RIGHT_FOOT_INDEX": "RightToeEnd",
+    "RIGHT_HEEL": "RightToeBase",
+    "RIGHT_HIP": "RightUpLeg",
+    "RIGHT_KNEE": "Rightleg",
+    "RIGHT_SHOULDER": "RightShoulder",
+    "RIGHT_WRIST": "RightHand"
+  }
+  

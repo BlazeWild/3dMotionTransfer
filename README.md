@@ -1,1 +1,1 @@
-# 3dMotionTransfer
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
