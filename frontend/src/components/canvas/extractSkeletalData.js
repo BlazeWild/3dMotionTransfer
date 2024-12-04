@@ -60,13 +60,12 @@ const extractSkeletonData = (fbx) => {
     bones: skeletonData,
   };
 
-  // Send data to backend via POST request
-  fetch('http://localhost:5000/api/saveSkeletonData', {
-    method: 'POST',
+  fetch('http://localhost:5000/api/fbxdata', {
+    method: 'POST', // Ensure the method is POST
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(result),
+    body: JSON.stringify(result), // Ensure the payload (result) is a valid JSON object
   })
     .then((response) => response.json())
     .then((data) => {
@@ -75,7 +74,7 @@ const extractSkeletonData = (fbx) => {
     .catch((error) => {
       console.error('Error saving skeleton data to backend:', error);
     });
-
+    
   return result;
 };
 
