@@ -1,35 +1,31 @@
 import * as THREE from 'three';
-import fs from 'fs'; // Use fs to write the JSON file
 
 const extractSkeletonData = (fbx) => {
   const skeletonData = [];
+  
+  let hipPosition = null;
+  let hipRotation = null;
 
-  let hipPosition = null; // To store the world position of the hip
-  let hipRotation = null; // To store the world rotation of the hip
-
+  // Traverse through all the bones in the FBX model
   fbx.traverse((object) => {
     if (object.isBone) {
       const worldPosition = new THREE.Vector3();
       const worldQuaternion = new THREE.Quaternion();
 
-      // Safely retrieve the world position and rotation
       object.getWorldPosition(worldPosition);
       object.getWorldQuaternion(worldQuaternion);
 
       const worldRotation = new THREE.Euler();
       worldRotation.setFromQuaternion(worldQuaternion);
 
-      // Collect data about the hip (assumed to be the root parent)
       if (object.name === 'hip') {
-        hipPosition = worldPosition.clone(); // Store the hip position
-        hipRotation = worldRotation.clone(); // Store the hip rotation
+        hipPosition = worldPosition.clone();
+        hipRotation = worldRotation.clone();
       }
 
-      // Calculate the length of the bone by checking the distance to its parent
       const parentPosition = object.parent ? object.parent.position : new THREE.Vector3();
       const boneLength = object.position.distanceTo(parentPosition);
 
-      // Collect data for the bone
       skeletonData.push({
         name: object.name,
         parent: object.parent?.name || null,
@@ -43,12 +39,11 @@ const extractSkeletonData = (fbx) => {
           y: THREE.MathUtils.radToDeg(worldRotation.y),
           z: THREE.MathUtils.radToDeg(worldRotation.z),
         },
-        boneLength, // Add bone length
+        boneLength,
       });
     }
   });
 
-  // Save hip position and rotation, along with child bone data to JSON
   const result = {
     hip: {
       position: {
@@ -65,9 +60,21 @@ const extractSkeletonData = (fbx) => {
     bones: skeletonData,
   };
 
-  // Save the result to a JSON file
-  fs.writeFileSync('skeletonData.json', JSON.stringify(result, null, 2), 'utf-8');
-  console.log('Skeleton data saved to skeletonData.json');
+  // Send data to backend via POST request
+  fetch('http://localhost:5000/api/saveSkeletonData', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(result),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Skeleton data saved successfully:', data);
+    })
+    .catch((error) => {
+      console.error('Error saving skeleton data to backend:', error);
+    });
 
   return result;
 };
