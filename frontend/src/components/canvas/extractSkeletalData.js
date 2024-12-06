@@ -6,18 +6,19 @@ const extractBoneTransforms = (fbx) => {
 
   // Recursive function to traverse bones and compute relative transformations
   const traverseBones = (bone, parent = null) => {
-    // Compute local position and rotation
-    const localPosition = bone.position.clone();
+    // Compute world position
+    const worldPosition = new THREE.Vector3();
+    bone.getWorldPosition(worldPosition);
     const localQuaternion = bone.quaternion.clone();
 
     const boneData = {
       name: bone.name,
-      position: {
-        x: localPosition.x,
-        y: localPosition.y,
-        z: localPosition.z,
+      worldPosition: {
+        x: worldPosition.x,
+        y: worldPosition.y,
+        z: worldPosition.z,
       },
-      rotation: new THREE.Euler().setFromQuaternion(localQuaternion).toArray(), // [x, y, z]
+      localRotation: new THREE.Euler().setFromQuaternion(localQuaternion).toArray(), // [x, y, z]
     };
 
     // Add to Map if bone name not already present

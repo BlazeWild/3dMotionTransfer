@@ -1,0 +1,20 @@
+{
+    "Hips": ["Spine"],
+    "Spine": ["Spine1"],
+    "Spine1": ["Spine2"],
+    "Spine2": ["Neck"],
+    "Neck": ["Head"],
+    "Head": ["HeadTop_End", "LeftEye", "RightEye"],
+    "LeftShoulder": ["LeftElbow"],
+    "LeftElbow": ["LeftWrist"],
+    "LeftWrist": ["LeftThumb1", "LeftIndex1", "LeftMiddle1", "LeftRing1", "LeftPinky1"],
+    "RightShoulder": ["RightElbow"],
+    "RightElbow": ["RightWrist"],
+    "RightWrist": ["RightThumb1", "RightIndex1", "RightMiddle1", "RightRing1", "RightPinky1"],
+    "LeftHip": ["LeftKnee"],
+    "LeftKnee": ["LeftAnkle"],
+    "LeftAnkle": ["LeftFoot"],
+    "RightHip": ["RightKnee"],
+    "RightKnee": ["RightAnkle"],
+    "RightAnkle": ["RightFoot"]
+}

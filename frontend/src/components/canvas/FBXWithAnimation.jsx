@@ -17,7 +17,7 @@ const FBXWithAnimation = ({ modelPath, scale, position, rotation }) => {
   // Fetch keypoints for frame 001
   const fetchKeypoints = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/3dkeypoints');
+      const response = await axios.get('http://localhost:5000/api/3dkeypoints');
       const keypointsForFrame = response.data.keypoints["001"]; // Assuming "001" is the desired frame
       console.log("Fetched keypoints for frame 001:", keypointsForFrame);
       setKeypoints(keypointsForFrame);
