@@ -1,21 +1,25 @@
-import { useLocation } from 'react-router-dom';
-import {CanvasComponent} from './canvas';
-import {styles} from '../styles';
-import {FBXWithAnimation} from './canvas';
-import React from 'react';
-
+import React from "react";
 
 const Homepage = () => {
+  const handleCreateProject = () => {
+    window.open("/create", "_blank"); // Open in a new tab
+  };
+
   return (
-<section
-  className="relative w-full h-screen mx-auto
-  bg-kingdom bg-contain bg-cover bg-no-repeat bg-center"
->
-      <div
-           className={`absolute inset-0 top-[120px] max-w-7xl mx-auto ${styles.paddingX} flex flex-col items-center gap-5`}
-       >
-        {/* Ensures the CanvasComponent takes full screen dimensions */}
-        <CanvasComponent />
+    <section className="h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-purple-700 text-white">
+      <div className="text-center space-y-6 max-w-4xl px-6">
+        <h1 className="text-5xl font-bold">
+          Welcome to 3D Motion Transfer Project
+        </h1>
+        <p className="text-lg">
+          Seamlessly animate rigged 3D models using motion data extracted from videos or real-time camera feeds.
+        </p>
+        <button
+          onClick={handleCreateProject}
+          className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg shadow-lg hover:bg-gray-100 transition-all"
+        >
+          Create a Project
+        </button>
       </div>
     </section>
   );

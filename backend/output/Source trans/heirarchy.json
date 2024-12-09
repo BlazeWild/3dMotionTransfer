@@ -1,20 +1,117 @@
 {
-    "Hips": ["Spine"],
-    "Spine": ["Spine1"],
-    "Spine1": ["Spine2"],
-    "Spine2": ["Neck"],
-    "Neck": ["Head"],
-    "Head": ["HeadTop_End", "LeftEye", "RightEye"],
-    "LeftShoulder": ["LeftElbow"],
-    "LeftElbow": ["LeftWrist"],
-    "LeftWrist": ["LeftThumb1", "LeftIndex1", "LeftMiddle1", "LeftRing1", "LeftPinky1"],
-    "RightShoulder": ["RightElbow"],
-    "RightElbow": ["RightWrist"],
-    "RightWrist": ["RightThumb1", "RightIndex1", "RightMiddle1", "RightRing1", "RightPinky1"],
-    "LeftHip": ["LeftKnee"],
-    "LeftKnee": ["LeftAnkle"],
-    "LeftAnkle": ["LeftFoot"],
-    "RightHip": ["RightKnee"],
-    "RightKnee": ["RightAnkle"],
-    "RightAnkle": ["RightFoot"]
-}
+    "hip": {
+      "parent": null
+    },
+    "left_hip": {
+      "parent": "hip"
+    },
+    "right_hip": {
+      "parent": "hip"
+    },
+    "spine": {
+      "parent": "hip"
+    },
+    "spine1": {
+      "parent": "spine"
+    },
+    "spine2": {
+      "parent": "spine1"
+    },
+    "neck": {
+      "parent": "spine2"
+    },
+    "nose": {
+      "parent": "neck"
+    },
+    "left_eye_inner": {
+      "parent": "neck"
+    },
+    "left_eye": {
+      "parent": "neck"
+    },
+    "left_eye_outer": {
+      "parent": "neck"
+    },
+    "right_eye_inner": {
+      "parent": "neck"
+    },
+    "right_eye": {
+      "parent": "neck"
+    },
+    "right_eye_outer": {
+      "parent": "neck"
+    },
+    "left_ear": {
+      "parent": "neck"
+    },
+    "right_ear": {
+      "parent": "neck"
+    },
+    "mouth_left": {
+      "parent": "neck"
+    },
+    "mouth_right": {
+      "parent": "neck"
+    },
+    "left_knee": {
+      "parent": "left_hip"
+    },
+    "right_knee": {
+      "parent": "right_hip"
+    },
+    "left_ankle": {
+      "parent": "left_knee"
+    },
+    "right_ankle": {
+      "parent": "right_knee"
+    },
+    "left_shoulder": {
+      "parent": "spine2"
+    },
+    "right_shoulder": {
+      "parent": "spine2"
+    },
+    "left_elbow": {
+      "parent": "left_shoulder"
+    },
+    "right_elbow": {
+      "parent": "right_shoulder"
+    },
+    "left_wrist": {
+      "parent": "left_elbow"
+    },
+    "right_wrist": {
+      "parent": "right_elbow"
+    },
+    "left_pinky": {
+      "parent": "left_wrist"
+    },
+    "right_pinky": {
+      "parent": "right_wrist"
+    },
+    "left_index": {
+      "parent": "left_wrist"
+    },
+    "right_index": {
+      "parent": "right_wrist"
+    },
+    "left_thumb": {
+      "parent": "left_wrist"
+    },
+    "right_thumb": {
+      "parent": "right_wrist"
+    },
+    "left_heel": {
+      "parent": "left_ankle"
+    },
+    "right_heel": {
+      "parent": "right_ankle"
+    },
+    "left_foot_index": {
+      "parent": "left_ankle"
+    },
+    "right_foot_index": {
+      "parent": "right_ankle"
+    }
+  }
+  
