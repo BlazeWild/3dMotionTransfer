@@ -101,12 +101,6 @@ def process_keypoints(keypoints_path, joint_hierarchy_path, bone_lengths, rotati
     with open(rotations_output_path, "w") as file:
         json.dump(all_bone_rotations, file, indent=4)
 
-    # Print the bone rotations for each frame
-    for frame, rotations in all_bone_rotations.items():
-        print(f"Frame {frame}:")
-        for bone, rotation in rotations.items():
-            print(f"  Bone {bone} rotation: {rotation}")
-
 # Example usage:
 keypoints_path = r"backend\output\3dkeypoints.json"  # Path to the 3D keypoints JSON file
 joint_hierarchy_path = r"backend\output\Source trans\joint_hierarchy.json"  # Path to the joint hierarchy JSON file

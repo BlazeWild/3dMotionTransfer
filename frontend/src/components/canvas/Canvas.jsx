@@ -54,7 +54,7 @@ const CanvasComponent = () => {
         enablePan={false}
       />
       {/* Add lighting for the scene */}
-      <ambientLight intensity={0.4} />
+      <ambientLight intensity={0.8} />
       <ambientLight intensity={1} />
       <ambientLight intensity={1} />
       {/* <directionalLight position={[10, 20, 10]} intensity={1} /> */}
