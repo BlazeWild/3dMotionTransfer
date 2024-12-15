@@ -7,7 +7,7 @@ This document outlines the key tasks and updates planned for the project, focusi
 
 ## 📝 Task List
 
-1. **3D Pose Estimation with BlazePose3D**
+1. **3D Pose Estimation with BlazePose3D , first finetune for 17 keypoints and 3d visualization.**
 2. **Correct BlazePose3D Output and Obtain Rotation Information**
 3. **Obtain Extra Keypoints Through Interpolation or Fine-tuning BlazePose3D**
 4. **Mapping Using ST-GCN or Manual Rotation Mapping**
