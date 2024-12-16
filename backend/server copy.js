@@ -1,88 +1,34 @@
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
+const express = require('express');
 const cors = require("cors");
+
+// Import route files
+const keypointsRoute = require("./routes/keypointsRoute");
+const threeDKeypointsRoute = require("./routes/3dkeypointsRoute");
+const extractRoute = require("./routes/extractRoute");
+const videoUploadRoute = require("./routes/videoUploadRoute");
+const save3DSkeletonRoute = require('./routes/save3DSkeleton');
 
 const app = express();
 const port = 5000;
 
-// Enable CORS for all routes (similar to FastAPI's CORSMiddleware)
+// Increase the payload size limit
+app.use(express.json({ limit: '50mb' })); // Adjust the size as per your needs
+app.use(express.urlencoded({ limit: '50mb', extended: true })); // For URL-encoded data
+
+// Enable CORS for all routes
 app.use(cors());
 
 // Middleware to handle JSON responses
 app.use(express.json());
 
-// Route to retrieve keypoints from keypoints.json
-app.get("/keypoints", (req, res) => {
-  const keypointsPath = path.join(__dirname,"output", "keypoints.json");
+// Use route files
+app.use("/api/keypoints", keypointsRoute);
+app.use("/api/3dkeypoints", threeDKeypointsRoute);
+app.use("/api/extract", extractRoute);
+app.use("/api/upload", videoUploadRoute);
+app.use('/api/fbxdata', save3DSkeletonRoute);
 
-  // Debug: Print current working directory and file location
-  console.log(`Current working directory: ${process.cwd()}`);
-  console.log(`Looking for file at: ${keypointsPath}`);
 
-  // Try to read the keypoints.json file
-  fs.readFile(keypointsPath, "utf8", (err, data) => {
-    if (err) {
-      if (err.code === "ENOENT") {
-        // Handle file not found error
-        console.error(`File not found: ${keypointsPath}`);
-        return res.status(404).json({ status: "error", message: "Keypoints not found" });
-      } else {
-        // Handle other errors
-        console.error(`Error reading file: ${err.message}`);
-        return res.status(500).json({ status: "error", message: "Error reading keypoints file" });
-      }
-    }
-
-    try {
-      const keypoints = JSON.parse(data);
-      console.log("Keypoints loaded successfully");
-
-      // Return the keypoints data as a JSON response
-      return res.json({ status: "success", keypoints });
-    } catch (jsonError) {
-      // Handle JSON parsing errors
-      console.error(`JSON Decode Error: ${jsonError.message}`);
-      return res.status(500).json({ status: "error", message: "Error decoding JSON" });
-    }
-  });
-});
-
-app.get("/3dkeypoints", (req, res) => {
-    const keypointsPath = path.join(__dirname, "output", "3dkeypoints.json");
-  
-    // Debug: Print current working directory and file location
-    console.log(`Current working directory: ${process.cwd()}`);
-    console.log(`Looking for file at: ${keypointsPath}`);
-  
-    // Try to read the 3dkeypoints.json file
-    fs.readFile(keypointsPath, "utf8", (err, data) => {
-      if (err) {
-        if (err.code === "ENOENT") {
-          // Handle file not found error
-          console.error(`File not found: ${keypointsPath}`);
-          return res.status(404).json({ status: "error", message: "3D Keypoints not found" });
-        } else {
-          // Handle other errors
-          console.error(`Error reading file: ${err.message}`);
-          return res.status(500).json({ status: "error", message: "Error reading 3D keypoints file" });
-        }
-      }
-  
-      try {
-        const keypoints = JSON.parse(data);
-        console.log("3D Keypoints loaded successfully");
-  
-        // Return the 3D keypoints data as a JSON response
-        return res.json({ status: "success", keypoints });
-      } catch (jsonError) {
-        // Handle JSON parsing errors
-        console.error(`JSON Decode Error: ${jsonError.message}`);
-        return res.status(500).json({ status: "error", message: "Error decoding JSON" });
-      }
-    });
-  });
-  
 // Start the server
 app.listen(port, () => {
   console.log(`Backend server running at http://localhost:${port}`);

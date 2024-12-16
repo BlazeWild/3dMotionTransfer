@@ -73,8 +73,9 @@ const ProjectEditor = () => {
                 height: `${videoSize.height}px`,
               }}
             >
+              {/* Display the processed video */}
               <video
-                src="your-video.mp4"
+                src="http://localhost:5000/processed-video.mp4" // Replace with the actual URL
                 className="w-full h-full rounded-lg"
                 controls
               />
@@ -94,6 +95,7 @@ const ProjectEditor = () => {
               </div>
             </div>
           </Draggable>
+
 
           {/* Playback Controls */}
           <div className="w-full bg-gray-800 flex items-center justify-between p-4 border-t border-gray-700">
